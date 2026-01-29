@@ -1,0 +1,103 @@
+{
+    "binding_settings": {
+        "description": "核心绑定功能",
+        "type": "object",
+        "items": {
+            "binding_group": { "description": "绑定后自动设置的用户组", "type": "string", "default": "default" },
+            "min_qq_level": { "description": "允许绑定的最低QQ等级", "type": "int", "default": 16 },
+            "quota_display_ratio": { "description": "额度显示汇率 (原始Quota / 此值)", "type": "int", "default": 500000 }
+        }
+    },
+    "check_in_settings": {
+         "description": "每日签到功能",
+         "type": "object",
+         "items": {
+            "enabled": { "description": "是否启用签到功能", "type": "bool", "default": true },
+            "timezone_offset_hours": { "description": "时区偏移量 (例如 UTC+8 填 8)", "type": "int", "default": 8 },
+            "min_display_quota": { "description": "每日签到可获得的最小显示额度", "type": "float", "default": 1500 },
+            "max_display_quota": { "description": "每日签到可获得的最大显示额度", "type": "float", "default": 1500 },
+            "double_chance": { "description": "触发翻倍奖励的概率", "type": "float", "default": 0.1 },
+            "first_check_in_bonus_enabled": { "description": "是否发放首次签到奖励", "type": "bool", "default": true },
+            "first_check_in_bonus_display_quota": { "description": "首次签到额外奖励的显示额度", "type": "float", "default": 2 },
+            "check_in_success_template": { "description": "签到成功的消息模板", "type": "text", "default": "签到成功！您获得了 {display_added} 额度，当前剩余总额度为 {display_total}。" },
+            "check_in_doubled_template": { "description": "签到触发翻倍的消息模板", "type": "text", "default": "🎉 好运连连！签到成功并触发了双倍奖励！🎉\n\n您获得了 {display_added} 额度，当前剩余总额度为 {display_total}。" },
+            "first_check_in_success_template": { "description": "首次签到成功的消息模板", "type": "text", "default": "✨ 欢迎您的第一次签到！✨\n\n您获得了 {display_added} 额度 (内含一份额外新人礼包哦！)\n当前剩余总额度为 {display_total}。" }
+         }
+    },
+    "group_leave_settings": {
+        "description": "退群自动净化",
+        "type": "object",
+        "items": {
+            "group_monitoring_list": { "description": "需要监控的群号列表", "type": "list", "default": [] },
+            "revert_group_on_leave": { "description": "退群后恢复的用户组", "type": "string", "default": "default" }
+        }
+    },
+    "heist_settings": {
+        "description": "【娱乐功能】打劫设置",
+        "type": "object",
+        "items": {
+            "enabled": { "description": "是否启用打劫功能", "type": "bool", "default": true },
+            "max_attempts_per_day": { "description": "每个用户每天可以主动打劫的次数", "type": "int", "default": 1 },
+            "max_defenses_per_day": { "description": "每个用户每天被【成功】打劫的次数上限", "type": "int", "default": 3 },
+            "min_amount": { "description": "成功打劫时，获得的最小【显示额度】", "type": "float", "default": 5.0 },
+            "max_amount": { "description": "成功打劫时，获得的最大【显示额度】", "type": "float", "default": 40.0 },
+            "critical_chance": { "description": "触发暴击（双倍奖励）的概率 (0.0 到 1.0)", "type": "float", "default": 0.1 },
+            "failure_chance": { "description": "打劫失败并触发惩罚的概率 (0.0 到 1.0)", "type": "float", "default": 0.5 },
+            "failure_penalty": { "description": "打劫失败时，赔偿给对方的【显示额度】", "type": "float", "default": 100.0 },
+            "cooldown_seconds": { "description": "两次打劫之间的冷却时间（秒）", "type": "int", "default": 3600 },
+            "success_template": { 
+                "description": "打劫成功的消息模板。可用变量: {gain}", 
+                "type": "text", 
+                "default": "✅ 打劫成功！你悄悄地从对方口袋里摸走了 {gain:.2f} 额度。" 
+            },
+            "critical_template": { 
+                "description": "打劫暴击的消息模板。可用变量: {gain}", 
+                "type": "text", 
+                "default": "🎉 暴击！你的手法如此娴熟，居然摸走了双倍的 {gain:.2f} 额度！" 
+            },
+            "failure_template": { 
+                "description": "打劫失败的消息模板。可用变量: {penalty}", 
+                "type": "text", 
+                "default": "💥 失手了！你在打劫时笨手笨脚，反被对方揍了一顿，赔偿了 {penalty:.2f} 额度。" 
+            },
+            "attempts_exceeded_template": { 
+                "description": "打劫者次数用尽的提示", 
+                "type": "text", 
+                "default": "🥵 你今天已经打劫累了，先去歇会儿吧，明天再来。" 
+            },
+            "defenses_exceeded_template": { 
+                "description": "受害者次数用尽的提示。可用变量: {victim_id}", 
+                "type": "text", 
+                "default": "🛡️ 对方(ID:{victim_id})今天已经被打劫太多次了，看起来已经有了防备，换个目标吧。" 
+            },
+            "victim_not_found_template": { 
+                "description": "未找到目标的提示。可用变量: {victim_identifier}", 
+                "type": "text", 
+                "default": "💨 你朝着空气挥舞拳头，但并没有找到ID为 {victim_identifier} 的目标。" 
+            },
+            "cannot_rob_self_template": { 
+                "description": "打劫自己的提示", 
+                "type": "text", 
+                "default": "🤦‍♂️ 你不能打劫你自己，这毫无意义！" 
+            },
+            "robber_not_bound_template": { 
+                "description": "打劫者未绑定的提示", 
+                "type": "text", 
+                "default": "🤔 你自己都还没绑定账号，抢来的钱往哪儿放呢？快去 /绑定 吧！" 
+            },
+            "cooldown_template": {
+                "description": "打劫冷却中的提示。可用变量: {remaining_time}",
+                "type": "text",
+                "default": "⏳ 你刚刚打劫完，正在被官府通缉呢！先躲一会儿吧，还剩 {remaining_time} 秒才能再次行动。"
+            }
+        }
+    },
+    "optional_pm_settings": {
+        "description": "可选的私信通知",
+        "type": "object",
+        "items": {
+            "enable_bind_success_pm": { "description": "是否在绑定成功后发送私信", "type": "bool", "default": true },
+            "bind_success_pm_template": { "description": "绑定成功私信的内容模板", "type": "text", "default": "绑定成功！" }
+        }
+    }
+}

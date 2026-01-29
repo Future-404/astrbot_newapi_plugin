@@ -1,0 +1,5 @@
+name: NewAPI_plugin
+desc: 一个集成了核心用户管理与娱乐功能的New API插件套件，实现了用户绑定、每日签到、额度管理、打劫以及退群自动净化等功能。
+version: v1.1.0
+author: Future-404
+repo: https://github.com/Future-404/astrbot_newapi_plugin.git
