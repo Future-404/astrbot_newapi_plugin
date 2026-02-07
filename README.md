@@ -1,4 +1,4 @@
-# NewAPI Suite 插件部署手册
+# 插件部署手册
 
 欢迎使用 NewAPI Suite 插件！本插件是为 [AstrBot](https://github.com/he0119/AstrBot) 设计的一套功能集成套件，旨在打通您的 New API 网站与 QQ 群组之间的桥梁，提供丰富的用户互动与管理功能。
 
@@ -85,5 +85,3 @@ API_ADMIN_USER_ID=1
 
 ---
 Future-404
-QQ: 317032529
-月亮公益站:733012645
